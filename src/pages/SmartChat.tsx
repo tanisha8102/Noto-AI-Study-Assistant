@@ -1,5 +1,5 @@
 // src/pages/SmartChat.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { GoogleGenAI } from "@google/genai";
 
 const genAI = new GoogleGenAI({
@@ -12,34 +12,39 @@ const SmartChat = () => {
   const [loading, setLoading] = useState(false);
 
   const handleAsk = async () => {
-    if (!input.trim()) return;
+  if (!input.trim()) return;
 
-    const newUserMessage = input;
-    setInput("");
-    setLoading(true);
+  const newUserMessage = input;
+  setInput("");
+  setLoading(true);
 
-    try {
-      // Construct chat history as text prompt
-      const chatHistory = messages
-        .map((msg) => `User: ${msg.user}\nAssistant: ${msg.bot}`)
-        .join("\n");
+  try {
+    // Construct chat history as text prompt
+    const chatHistory = messages
+      .map((msg) => `User: ${msg.user}\nAssistant: ${msg.bot}`)
+      .join("\n");
 
-      const fullPrompt = `${chatHistory}\nUser: ${newUserMessage}\nAssistant:`;
+    const fullPrompt = `${chatHistory}\nUser: ${newUserMessage}\nAssistant:`;
 
-      const result = await genAI.models.generateContent({
-        model: "gemini-2.0-flash", // same as working model
-        contents: fullPrompt,
-      });
+    const result = await genAI.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: fullPrompt,
+    });
 
-      const botResponse = result.text.trim();
+    const botResponse = result?.text?.trim();
 
-      setMessages((prev) => [...prev, { user: newUserMessage, bot: botResponse }]);
-    } catch (err: any) {
-      alert("Failed to get a response: " + err.message);
-    } finally {
-      setLoading(false);
+    if (!botResponse) {
+      throw new Error("No response from the assistant.");
     }
-  };
+
+    setMessages((prev) => [...prev, { user: newUserMessage, bot: botResponse }]);
+  } catch (err: any) {
+    alert("Failed to get a response: " + err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="p-6 max-w-3xl mx-auto">

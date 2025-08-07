@@ -2,6 +2,13 @@
 
 import { GoogleGenAI } from "@google/genai";
 
+// Define the expected quiz question structure
+export interface QuizQuestion {
+  question: string;
+  options: string[];
+  answer: string; // "A", "B", "C", or "D"
+}
+
 const genAI = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 export async function summarizeWithGenAI(text: string, wordLimit: number): Promise<string> {
@@ -10,7 +17,10 @@ export async function summarizeWithGenAI(text: string, wordLimit: number): Promi
       model: "gemini-2.0-flash",
       contents: `Summarize the following text in simple bullet points, keeping the summary within ${wordLimit} words:\n\n${text}`,
     });
-    return response.text.trim();
+
+    const content = response?.text?.trim();
+    if (!content) throw new Error("No content returned from Gemini.");
+    return content;
   } catch (err: any) {
     console.error("GenAI Error:", err.message);
     return "Error summarizing text: " + err.message;
@@ -44,8 +54,11 @@ ${text}
       contents: prompt,
     });
 
-    // 👇 Strip code block if Gemini includes ```json ... ```
-    const cleaned = response.text.trim().replace(/^```json\s*|```$/g, "").trim();
+    const raw = response?.text?.trim();
+    if (!raw) throw new Error("No content returned from Gemini.");
+
+    // Strip code block if wrapped with ```json
+    const cleaned = raw.replace(/^```json\s*|```$/g, "").trim();
 
     const json = JSON.parse(cleaned);
     return json;

@@ -1,5 +1,5 @@
 // src/pages/QuizGenerator.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { generateQuizWithGenAI } from "../utils/gemini";
 
 type QuizQuestion = {

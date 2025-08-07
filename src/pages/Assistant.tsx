@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { summarizeWithGenAI } from "../utils/gemini";
 
 const Assistant = () => {
