@@ -1,69 +1,33 @@
-# React + TypeScript + Vite
+# 📚 AI-Powered Study Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An intelligent study assistant web app built with **Vite + React + TypeScript**, powered by **Gemini AI**. This app helps students and learners understand complex topics, summarize content, generate quizzes, and (soon) listen to notes via text-to-speech.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- ✨ **Smart Chat** – Ask anything about your uploaded content or any topic.
+- 🧠 **AI-Powered Summarization** – Upload study material and get simplified bullet-point summaries.
+- ❓ **Quiz Generation** – Automatically generate multiple-choice questions from study content.
+- 🗣️ **Text-to-Speech (Coming Soon)** – Convert content into speech with playback speed control.
+- 📱 **Mobile-Responsive** – Fully usable on mobile and tablet devices.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📸 Preview
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+![Study Assistant Screenshot](./preview.png)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- ⚛️ React + TypeScript + Vite
+- 🎨 Tailwind CSS (optional styling)
+- 🧠 [@google/genai](https://www.npmjs.com/package/@google/genai) (Gemini API)
+- 🌐 Vercel (Deployment)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+## 🔗 Live Demo
+
+👉 **[Try it Live on Vercel](https://noto-ai-study-assistant.vercel.app)*
