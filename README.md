@@ -14,12 +14,6 @@ An intelligent study assistant web app built with **Vite + React + TypeScript**,
 
 ---
 
-## 📸 Preview
-
-![Study Assistant Screenshot](./preview.png)
-
----
-
 ## 🛠️ Tech Stack
 
 - ⚛️ React + TypeScript + Vite
