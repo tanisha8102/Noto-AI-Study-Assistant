@@ -9,7 +9,7 @@ import SmartChat from "./pages/SmartChat";
 import TextToSpeechPage from "./pages/TextToSpeech";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   // Apply dark class to <html> for global dark mode
   useEffect(() => {
